@@ -1,0 +1,186 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Scraper{% endblock %}</title>
+    <style>
+        header {
+            background-color: #21a8c3;
+            color: #fff;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        nav ul li a:hover {
+            background-color: #555;
+        } 
+
+        body {
+            font-family: 'Roboto', sans-serif; /* Cambia 'Roboto' por el nombre de la fuente que desees */
+        }
+
+        /* Estilos para centrar el contenido en el main */
+        main {
+            display: flex;
+            flex-direction: column; /* Cambiar la dirección a vertical */
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin-top: -50px; /* Ajusta el margen superior según sea necesario */
+        }
+
+        /* Estilos para el contenido dentro del main */
+        main > div {
+            text-align: center; /* Opcional: centrar el texto dentro del div */
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            padding: 10px; /* Ajusta el tamaño del input */
+            border: 1px solid #ccc; /* Añade un borde */
+            border-radius: 10px; /* Hace que el borde sea redondeado */
+            font-size: 16px; /* Ajusta el tamaño de la fuente */
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            outline: none; /* Quita el contorno al enfocar */
+            border-color: dodgerblue; /* Cambia el color del borde cuando se enfoca */
+        }
+
+        button {
+            padding: 10px; /* Ajusta el tamaño del botón */
+            border: 1px solid #ccc; /* Añade un borde */
+            border-radius: 10px; /* Hace que el borde sea redondeado */
+            font-size: 16px; /* Ajusta el tamaño de la fuente */
+            background-color: blue; /* Cambia el color de fondo del botón a azul */
+            color: white; /* Cambia el color del texto a blanco */
+            cursor: pointer; /* Cambia el cursor cuando pasas el mouse */
+            text-decoration: none; /* Quita cualquier decoración del texto */
+        }
+
+        button:hover {
+            background-color: darkblue; /* Cambia el color de fondo del botón a un azul más oscuro cuando pasas el mouse */
+        }
+
+                /* Estilos para el formulario de filtros */
+        .filters {
+            margin-bottom: 20px;
+        }
+
+        .filter-form {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: 100px;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        .form-control {
+            width: 200px;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Estilos para la tabla de equipos */
+        .teams table {
+            width: 100%;
+            border-collapse: collapse;
+            overflow-x: auto; /* Agrega scroll horizontal si es necesario */
+            overflow-y: auto; /* Agrega scroll vertical si es necesario */
+        }
+
+        .teams th,
+        .teams td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .teams th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .teams tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Estilos para los inputs */
+        .teams input[type="text"],
+        .teams input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px; /* Agrega bordes redondeados */
+            box-sizing: border-box;
+        }
+
+        /* Estilos adicionales para evitar que los datos se superpongan */
+        .teams {
+            max-width: 100%;
+            height: calc(100vh - 50px); /* Ajusta la altura según sea necesario */
+            overflow-y: auto; /* Agrega scroll vertical si es necesario */
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .form-div {
+            height: 0;
+            margin-top: -600px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'index' %}">Inicio</a></li>
+                <li><a href="{% url 'results' %}">results</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

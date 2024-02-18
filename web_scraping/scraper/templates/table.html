@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Results{% endblock %}
+
+{% block content %}
+    <div class="form-div">
+        <h1>Results Page</h1>
+        <div class="filters">
+            <h2>Filters:</h2>
+            <form method="post" action="{% url 'results' %}" class="filter-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name">Team name:</label>
+                    <input type="text" name="name" id="name" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="year">Year:</label>
+                    <input type="text" name="year" id="year" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="wins">Victories:</label>
+                    <input type="text" name="wins" id="wins" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="losses">Losses:</label>
+                    <input type="text" name="losses" id="losses" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </form>
+        </div>
+        <div class="teams">
+            <h2>Teams</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Team Name</th>
+                        <th>Year</th>
+                        <th>Win</th>
+                        <th>Losses</th>
+                        <th>OT losses</th>
+                        <th>Win %</th>
+                        <th>Goals For GF</th>
+                        <th>Goals Against</th>
+                        <th>+/-</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in teams %}
+                    <tr>
+                        <td>{{ row.name }}</td>
+                        <td>{{ row.year }}</td>
+                        <td>{{ row.wins }}</td>
+                        <td>{{ row.losses }}</td>
+                        <td>{{ row.ot_losses }}</td>
+                        <td>{{ row.win_percentage }}</td>
+                        <td>{{ row.goals_for }}</td>
+                        <td>{{ row.goals_against }}</td>
+                        <td>{{ row.plus_minus }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

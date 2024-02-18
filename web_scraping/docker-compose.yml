@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'hockey'
+      MYSQL_USER: 'rabbit'
+      MYSQL_PASSWORD: '12345'
+      MYSQL_ROOT_PASSWORD: '12345'
+    ports:
+      - '3307:3306'
+
+  redis:
+    image: redis:5.0.1
+    restart: always
+    ports:
+      - '6379:6379'
+
+  web:
+    build: .
+    restart: always
+    ports:
+      - '8000:8000'
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - .:/app
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+
+  celery_worker:
+    build: .
+    restart: always
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - .:/app
+    command:  ["python", "web_scraping/start_celery.py"]

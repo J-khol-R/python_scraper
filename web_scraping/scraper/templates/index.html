@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Scraper{% endblock %}
+
+{% block content %}
+    <h1>Web Scraper</h1>
+    <p>Enter which pages you want to scrape and the number of works with which it will be done.</p>
+    <form method="post" action="{% url 'index' %}">
+    {% csrf_token %}
+    <input type="text" name="num_pages" placeholder="Pages">
+    <input type="number" name="num_workers" placeholder="Workers">
+    <button type="submit">Enviar</button>
+    </form> 
+
+    {% if message %}
+    <p>{{ message }}</p>
+    <form action="{% url 'results' %}" method="POST">
+        {% csrf_token %}
+        <button type="submit">Ir a results</button>
+    </form>
+    {% endif %}
+{% endblock %}
