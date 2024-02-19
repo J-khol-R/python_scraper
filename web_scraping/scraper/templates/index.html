@@ -4,7 +4,7 @@
 
 {% block content %}
     <h1>Web Scraper</h1>
-    <p>Enter which pages you want to scrape and the number of works with which it will be done.</p>
+    <p>Enter which pages you want to scrape separated by coma (1,2,3,4) and the number of worksers with which it will be done.</p>
     <form method="post" action="{% url 'index' %}">
     {% csrf_token %}
     <input type="text" name="num_pages" placeholder="Pages">
