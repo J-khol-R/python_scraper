@@ -9,14 +9,14 @@
     {% csrf_token %}
     <input type="text" name="num_pages" placeholder="Pages">
     <input type="number" name="num_workers" placeholder="Workers">
-    <button type="submit">Enviar</button>
+    <button type="submit">Send</button>
     </form> 
 
     {% if message %}
     <p>{{ message }}</p>
     <form action="{% url 'results' %}" method="POST">
         {% csrf_token %}
-        <button type="submit">Ir a results</button>
+        <button type="submit">go to results</button>
     </form>
     {% endif %}
 {% endblock %}

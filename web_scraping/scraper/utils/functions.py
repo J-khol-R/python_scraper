@@ -1,16 +1,16 @@
 from scraper.tasks import scrape_page
 
 def scrape_pages(pages):
-    tareas = [scrape_page.delay(page_num) for page_num in pages]
-    datos_completos = []
-    for tarea in tareas:
-        while not tarea.ready():
+    tasks = [scrape_page.delay(page_num) for page_num in pages]
+    complete_data = []
+    for task in tasks:
+        while not task.ready():
             pass
-        resultado = tarea.get()
-        if resultado is not None:
-            datos_completos.extend(resultado)
-    return datos_completos
+        result = task.get()
+        if result is not None:
+            complete_data.extend(result)
+    return complete_data
 
 def convert_num_pages(pages):
-    return [int(numero) for numero in pages.split(",")]
+    return [int(num) for num in pages.split(",")]
 

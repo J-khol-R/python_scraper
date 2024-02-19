@@ -20,7 +20,7 @@ def scrape_page(page_num):
 
         for col in cols:
             
-            column_name = col.get('class')[0].replace('-', '_')
+            column_name = col.get('class')[0]
             column_value = col.text
 
             row_data[column_name.replace('-', '_')] = column_value.strip()
